@@ -17,12 +17,14 @@ We are working on a content for running this workshop using a Windows machine. M
 
 ## 3) We strongly recommend you running this workshop in the following order:
 
-* [1. Setup Environments](https://github.com/bemer/containers-on-aws-workshop/tree/master/01-SetupEnvironment)
+* [1. Setup Environments](01-SetupEnvironment/)
 
-* [2. Creating Your Docker Image](https://github.com/bemer/containers-on-aws-workshop/tree/master/02-CreatingDockerImage)
+* [2. Creating Your Docker Image](02-CreatingDockerImage/)
 
-* [3. Creating A VPC for the Workshop](https://github.com/bemer/containers-on-aws-workshop/tree/master/03-CreateVPC)
+* [3. Creating A VPC for the Workshop](03-CreateVPC/)
 
-* [4. Running An ECS Cluster](https://github.com/bemer/containers-on-aws-workshop/tree/master/04-DeployEcsCluster)
+* [4. Running An ECS Cluster](04-DeployEcsCluster/)
 
-* [5. Deploying An Application with AWS Fargate](https://github.com/bemer/containers-on-aws-workshop/tree/master/05-DeployFargate)
+* [5. Deploying An Application with AWS Fargate](05-DeployFargate/)
+
+* [6. Deploying An Application with Amazon EKS](06-DeployEKSCluster/)
