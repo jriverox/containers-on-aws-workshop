@@ -1,4 +1,4 @@
-## Deploying a Kubernetes Cluster using EKS
+## Deploying a Kubernetes Cluster using EKS -- _Beta from_ 🇨🇱
 
 ## Elastic Container Service for Kubernetes (EKS)
 
@@ -160,6 +160,58 @@ At [CloudFormation Console](https://console.aws.amazon.com/cloudformation/) and 
 
 ![EKS Node AMI ID](images/node-ami-selection.png)
 
-6. Once the CloudFormation stack status changed to `CREATE_COMPLETE`, save the **NodeInstanceRole** within **Outputs** tab.
+6. Once the CloudFormation stack status changed to `CREATE_COMPLETE`, save the **NodeInstanceRole** within **Outputs** tab for further reference.
 
-![EKS Node Instance Role](images/node-instance-role.png)
+![EKS Node Instance Role](images/node-instance-role.png) 
+
+7. Open the [`aws-auth-cm.yaml`](aws-auth-cm.yaml) file on your local environment and replace the `<NodeInstanceRole>` with the [ARN] of the **NodeInstanceRole** you saved on step #6.
+
+Your `aws-auth-cm.yaml` would look like the following:
+
+```json
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::138450232291:role/workshop-eks-cluster-worker-nodes-NodeInstanceRole-1H5FQ9KBY99EX
+```
+
+8. Apply this configuration change using `kubectl`:
+
+    ``` 
+    $ kubectl apply -f aws-auth-cm.yaml
+    ```
+    In a few seconds you would starting seeing new worker nodes becoming registered on your EKS cluster
+
+    ```
+    $ kubectl get nodes --watch
+    ```
+
+### Deploying a sample application
+
+1. Create `redis-master-controller`:
+
+    ```
+    $ kubectl apply -f app/redis-master-controller.json
+    ```
+2. Create `redis-slave-service`:
+
+    ```
+    $ kubectl apply -f app/redis-slave-service.json
+    ```
+3. Create `guestbook-controller`:
+
+    ```
+    $ kubectl apply -f app/guestbook-controller.json
+    ```
+4. Create `guestbook-service`:
+
+    ```
+    $ kubectl apply -f app/guestbook-service.json
+    ```
+Wait for **ExternalIP** becomes available while running `kubectl get services -o wide`
+
+![Guestbook Application](images/guestbook-app.png)
+
+## Thanks a lot 
+
+You had finished EKS labs 
+You rock! 🎸🤘
