@@ -135,3 +135,31 @@ You'll see something like the following:
 EKS is an AWS-managed Kubernetes control plane which means you can just bring your EC2-based (soon Fargate) worker nodes.
 
 AWS provides an [EKS-Optimized AMI](https://docs.aws.amazon.com/eks/latest/userguide/eks-optimized-ami.html) out of the box that will be used during this lab. You can customize it based on your specific needs by forking the [amazon-eks-ami at GitHub](https://github.com/awslabs/amazon-eks-ami).
+
+During this lab we'll be using a quick start CloudFormation template, then deploying a sample application.
+
+### Launching EKS Worker Nodes using CloudFormation
+
+At [CloudFormation Console](https://console.aws.amazon.com/cloudformation/) and select an AWS region that supports EKS -- which is currently available at `us-east-1`, `us-west-2` and `eu-west-1` regions.
+
+1. Choose **Create Stack**.
+
+2. Refer to `https://amazon-eks.s3-us-west-2.amazonaws.com/cloudformation/2018-08-30/amazon-eks-nodegroup.yaml` CloudFormation template, while selecting **Specify an Amazon S3 template URL**, and click **Next**.
+
+3. On **Stack Name** use the following pattern: `<your-cluster-name>-worker-nodes`. For **ClusterName**, put the name of the cluster you had created earlier.
+
+![EKS Worker Nodes CloudFormation template](images/worker-nodes-template.png)
+
+4. Make sure the **ClusterControlPlaneSecurityGroup** matches the security group you had chose while creating your cluster.
+
+5. Choose the proper AMI ID for your current AWS region, for **NodeImageId** parameter.
+
+    - US West (Oregon): `ami-0a54c984b9f908c81`
+    - US East (N. Virginia: `ami-0440e4f6b9713faf6 `
+    - EU (Ireland): `ami-0c7a4976cb6fafd3a`
+
+![EKS Node AMI ID](images/node-ami-selection.png)
+
+6. Once the CloudFormation stack status changed to `CREATE_COMPLETE`, save the **NodeInstanceRole** within **Outputs** tab.
+
+![EKS Node Instance Role](images/node-instance-role.png)
