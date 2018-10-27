@@ -187,22 +187,36 @@ data:
 
 ### Deploying a sample application
 
-1. Create `redis-master-controller`:
+1. Apply `redis-master-controller`:
 
     ```
     $ kubectl apply -f app/redis-master-controller.json
     ```
-2. Create `redis-slave-service`:
+
+2. Apply `redis-master-service`:
+
+    ```
+    $ kubectl apply -f app/redis-master-service.json
+    ```
+
+3. Apply `redis-slave-controller`:
+
+    ```
+    $ kubectl apply -f app/redis-slave-controller.json
+    ```
+
+4. Apply `redis-slave-service`:
 
     ```
     $ kubectl apply -f app/redis-slave-service.json
     ```
-3. Create `guestbook-controller`:
+5. Apply `guestbook-controller`:
 
     ```
     $ kubectl apply -f app/guestbook-controller.json
     ```
-4. Create `guestbook-service`:
+
+6. Apply `guestbook-service`:
 
     ```
     $ kubectl apply -f app/guestbook-service.json
@@ -213,5 +227,6 @@ Wait for **ExternalIP** becomes available while running `kubectl get services -o
 
 ## Thanks a lot 
 
-You had finished EKS labs 
-You rock! 🎸🤘
+You had finished the initial EKS hands-on labs.
+
+> If you want to dive deeper, please refer to https://amzn.to/k8s-on-aws
