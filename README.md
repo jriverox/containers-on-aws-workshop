@@ -17,7 +17,7 @@ We are working on a content for running this workshop using a Windows machine. M
 
 ## 3) We strongly recommend you running this workshop in the following order:
 
-* [1. Setup Environments](https://github.com/bemer/containers-on-aws-workshop/tree/master/01-SetupEnvironment)
+* [1. Setup Environments](https://github.com/bemer/containers-on-aws-workshop/tree/master/01-EnvironmentSetup)
 
 * [2. Creating Your Docker Image](https://github.com/bemer/containers-on-aws-workshop/tree/master/02-CreatingDockerImage)
 
